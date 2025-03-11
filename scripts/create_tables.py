@@ -1,9 +1,14 @@
 import psycopg2
 from psycopg2 import sql
+import os
+
+db_host = os.getenv("DB_HOST")
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
 
 # Connect to PostgreSQL (connect to the default "postgres" database first)
 conn = psycopg2.connect(
-    dbname="postgres", user="my_user", password="my_password", host="localhost"
+    dbname="postgres", user=db_user, password=db_password, host=db_host
 )
 conn.autocommit = True  # Make sure changes are committed automatically
 cur = conn.cursor()
@@ -22,7 +27,7 @@ def create_database():
 def connect_to_ecommerce_db():
     conn.close()
     return psycopg2.connect(
-        dbname="ecommerce", user="my_user", password="my_password", host="localhost"
+        dbname="ecommerce", user=db_user, password=db_password, host=db_host
     )
 
 # Create tables
