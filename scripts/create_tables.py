@@ -40,8 +40,6 @@ def create_tables():
     create_users_table = '''
     CREATE TABLE IF NOT EXISTS users (
         user_id INT PRIMARY KEY,
-        name VARCHAR(255),
-        email VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     '''
