@@ -53,18 +53,18 @@ def process_event(event):
             # Insert into events
             cur.execute(
                 "INSERT INTO events (event_id, event_name, event_type, created_at) VALUES (%s, %s, %s, %s) ON CONFLICT DO NOTHING",
-                (event_id, event_name, "action", timestamp),
+                (event_id, event_name, "action", event["event_properties"]["timestamp"]),
             )
             # Insert into page_views or clicks
             if event_name == "page_view":
                 cur.execute(
                     f"INSERT INTO page_views (page_view_id, user_id, path, timestamp, event_id) VALUES (%s, %s, %s, %s, %s)",
-                    (str(uuid.uuid4()), event["event_properties"]["user_id"], event["path"], timestamp, event_id),
+                    (str(uuid.uuid4()), event["event_properties"]["user_id"], event["path"], event["event_properties"]["timestamp"], event_id),
                 )
             elif event_name == "click":
                 cur.execute(
                     f"INSERT INTO clicks (click_id, user_id, path, timestamp, event_id) VALUES (%s, %s, %s, %s, %s)",
-                    (str(uuid.uuid4()), event["event_properties"]["user_id"], event["path"], timestamp, event_id),
+                    (str(uuid.uuid4()), event["event_properties"]["user_id"], event["path"], event["event_properties"]["timestamp"], event_id),
                 )
 
         elif event_name == "purchase":
