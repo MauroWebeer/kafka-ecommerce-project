@@ -1,6 +1,3 @@
-Here’s a `README.md` template for your project, considering everything we've discussed so far. You can adjust any details specific to your setup.
-
-```markdown
 # Kafka E-Commerce Event Processing Project
 
 This project simulates an e-commerce platform where events like user activities, transactions, page views, and clicks are produced, consumed, and saved to a PostgreSQL database for further analysis using DBT (Data Build Tool).
