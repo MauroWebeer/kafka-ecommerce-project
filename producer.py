@@ -13,7 +13,7 @@ producer = Producer(conf)
 
 # Function to generate a random event
 def generate_event():
-    topic = random.choice(["user_activity_events", "user_login_events", "user_transaction_events"])
+    topic = random.choice(["user_activity_events", "user_transaction_events"])
     
     if topic == "user_activity_events":
         event = {
